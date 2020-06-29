@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^20.0.0",
     "bootstrap": "^4.5.0",
-    "jquery": "^3.5.1"
+    "datatables": "^1.10.18",
+    "datatables.net-dt": "^1.10.21",
+    "jquery": "^3.5.1",
+    "select2": "^4.0.13"
   }
 }

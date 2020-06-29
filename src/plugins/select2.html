@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select 2</title>
+    <link
+      rel="stylesheet"
+      href="/node_modules/select2/dist/css/select2.min.css"
+    />
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/select2/dist/js/select2.full.min.js"></script>
+    <script src="/node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+
+    <style>
+      select {
+        width: 180px;
+      }
+    </style>
+
+    <script>
+      $(document).ready(function () {
+        const cities = [
+          { id: 1, text: "Dublin" },
+          { id: 2, text: "Galway" },
+          { id: 3, text: "Cork" },
+          { id: 4, text: "Limerick" },
+          { id: 5, text: "Kilkenny" },
+        ];
+
+        const flags = {
+          France: "🇫🇷",
+          Espagne: "🇪🇸",
+        };
+
+        $("select")
+          .first()
+          .select2({
+            lang: "fr",
+            placeholder: "choisissez vos pays",
+            templateResult: function (item) {
+              let flag = "";
+              if (item.text in flags) {
+                flag = flags[item.text];
+              }
+              return $(`<span>${flag} ${item.text}</span>`);
+            },
+          });
+
+        $("#villes").select2({
+          data: cities,
+          templateResult: function (item) {
+            console.log(item);
+            const $item = $(`<span style="color:red">
+                ${"\u1F1E7"} &nbsp;
+                ${item.text}</span>`);
+            return $item;
+          },
+        });
+
+        ClassicEditor.create(document.getElementById("editor"))
+          .then(() => console.log("éditeur chargé"))
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </head>
+  <body>
+    <select>
+      <option>France</option>
+      <option>Espagne</option>
+      <option>Estonie</option>
+      <option>Italie</option>
+      <option>Japon</option>
+      <option>Java</option>
+    </select>
+
+    <select id="villes"></select>
+
+    <form>
+      <textarea id="editor" name="bio"></textarea>
+      <button type="submit">Valider</button>
+    </form>
+  </body>
+</html>

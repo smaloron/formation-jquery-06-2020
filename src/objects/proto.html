@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototype</title>
+    <script>
+      String.prototype.helloBad = () => {
+        return `Hello ${this}`;
+      };
+
+      String.prototype.helloGood = function () {
+        return `Hello ${this}`;
+      };
+
+      const name = "Seb";
+
+      console.log(name.helloBad());
+      console.log(name.helloGood());
+
+      String.prototype.toLowerCase = function () {
+        return this.toUpperCase();
+      };
+
+      console.log(name.toLowerCase());
+    </script>
+  </head>
+  <body></body>
+</html>

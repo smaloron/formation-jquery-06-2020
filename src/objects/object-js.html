@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototype</title>
+    <script>
+      // Création d'un constructeur
+      function Person(firstName, name, age) {
+        this.name = name;
+        this.firstName = firstName;
+        this.age = age;
+      }
+
+      Person.prototype.getFullName = function () {
+        return `${this.firstName} ${this.name.toUpperCase()}`;
+      };
+
+      Person.prototype.maxAge = 120;
+
+      // Instancation d'une personne
+      const joe = new Person("Joe", "Le taxi", 45);
+
+      const jane = new Person("Jane", "Austen", 45);
+
+      console.log(joe.getFullName());
+      console.log(jane.maxAge);
+
+      let notes = [5, 20, 13, 8];
+      Array.prototype.swap = function (originIndex, targetIndex) {
+        const temp = this[originIndex];
+        this[originIndex] = this[targetIndex];
+        this[targetIndex] = temp;
+        return this;
+      };
+
+      notes.swap(0, 3);
+
+      Array.prototype.getRandomIndex = function () {
+        return Math.floor(Math.random() * this.length);
+      };
+
+      Array.prototype.shuffle = function () {
+        const tmpArray = [];
+        // boucle Tant qu'il reste des éléments dans le tableau
+        while (this.length > 0) {
+          // Sélection d'un position aléatoire
+          const alea = this.getRandomIndex();
+          // Suppression à la position aléatoire
+          const item = this.splice(alea, 1);
+          // Ajout dans le tableau temporaire de l'élément supprimé
+          tmpArray.push(item[0]);
+        }
+
+        return tmpArray;
+      };
+
+      notes = notes.shuffle();
+
+      console.log(notes);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>formulaire</title>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="serialize-object.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("form").submit(function (event) {
+          event.preventDefault();
+
+          const data = $(this).serializeObject();
+
+          console.log(data);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form>
+      <input type="text" name="nom" placeholder="votre nom" />
+      <input type="text" name="age" placeholder="votre age" />
+      <button type="submit">Valider</button>
+    </form>
+  </body>
+</html>
