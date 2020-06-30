@@ -9,13 +9,45 @@
     />
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
     <script>
       $(document).ready(function () {
-        $("#example").DataTable();
+        const dataLang = [
+          { name: "Java", compiled: true, difficulty: "hard" },
+          { name: "Javascript", compiled: false, difficulty: "hard" },
+          { name: "C++", compiled: true, difficulty: "very hard" },
+          { name: "Python", compiled: false, difficulty: "easy" },
+          { name: "c#", compiled: true, difficulty: "medium" },
+          { name: "PHP", compiled: false, difficulty: "easy" },
+        ];
+
+        $("#languages").dataTable({
+          data: dataLang,
+          columns: [
+            { data: "name" },
+            { data: "compiled" },
+            { data: "difficulty" },
+          ],
+        });
+
+        $("#example").dataTable({
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/French.json",
+          },
+          columnDefs: [
+            {
+              targets: [2],
+              visible: false,
+              searchable: false,
+            },
+          ],
+        });
       });
     </script>
   </head>
   <body>
+    <table id="languages"></table>
+
     <table id="example" class="display" style="width: 100%;">
       <thead>
         <tr>

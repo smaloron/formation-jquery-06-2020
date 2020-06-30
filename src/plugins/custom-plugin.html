@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.fn.hello = function (params) {
+          console.log(this);
+          return this.html("Hello " + params.name);
+        };
+
+        (function ($) {
+          $.fn.editable = function (settings) {
+            const defaults = {
+              numRow: 6,
+            };
+
+            const params = $.extend(defaults, settings);
+
+            this.click(function () {
+              const text = $(this).text();
+              const $textarea = $(
+                `<textarea rows="${params.numRow}">${text}</textarea>`
+              );
+              $(this).replaceWith($textarea);
+            });
+          };
+        })(jQuery);
+
+        $("p").editable({});
+
+        $("h1")
+          .hello({
+            name: "Seb",
+          })
+          .css("color", "red");
+      });
+    </script>
+    <title>fr</title>
+  </head>
+  <body>
+    <h1></h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi debitis
+      dicta accusamus. Modi magni eius, nobis similique vitae mollitia
+      distinctio, eum aperiam suscipit soluta esse! Accusamus, enim similique.
+      Nisi, odit?
+    </p>
+  </body>
+</html>
